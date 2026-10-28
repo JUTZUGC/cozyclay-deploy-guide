@@ -1,0 +1,105 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "cozyclay",
+    "nameCn": "CozyClay",
+    "repoName": "cozyclay-deploy-guide",
+    "oneLiner": "1.1k stars，AGPL-3.0，浏览器里的开源 3D previs 预演工具",
+    "officialRepo": "https://github.com/NomaDamas/CozyClay",
+    "officialDocs": "https://github.com/NomaDamas/CozyClay/blob/main/README.md",
+    "stars": "1.1k",
+    "license": "AGPL-3.0",
+    "highlights": [
+      "Stage：用基础几何搭景，放角色或胶囊替身",
+      "Move：描述动作，浏览器内的编译器逐帧烘焙并做碰撞、脚滑检查",
+      "Shoot：时间线排镜头、画滑轨、通过镜头看画面",
+      "Export：关键帧包、灰模片段、相机、提示词、深度与法线通道",
+      "Agent 接入：内置 MCP server，可接 Claude Desktop / Claude Code / Cursor",
+      "本地优先：场景与导出都在浏览器和本机完成"
+    ],
+    "mcpSupport": "CozyClay 自带 MCP server（npx -y cozyclay mcp），可接入 Claude Desktop、Claude Code、Cursor 等客户端；本仓库的 MCP 只提供部署说明与常见问题。",
+    "webuiUrl": "http://127.0.0.1:5180/app/",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-28",
+    "verification": [
+      [
+        "npm 包 cozyclay 3.2.0、engines.node >=22.19.0 已核对",
+        "已核对 2026-10-28"
+      ],
+      [
+        "README 确认 npx 启动、5180 端口与 MCP 接入方式",
+        "已核对 2026-10-28"
+      ],
+      [
+        "未实测启动（首次 npx 会下载完整包）",
+        "说明 2026-10-28"
+      ],
+      [
+        "非目标宿主调用被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-28"
+      ]
+    ],
+    "deploy": {
+      "type": "script",
+      "requires": [
+        "node"
+      ],
+      "steps": [
+        "node -e \"const [a,b]=process.versions.node.split('.').map(Number); if(a<22||(a===22&&b<19)){console.error('需要 Node.js 22.19 或更高，当前 '+process.versions.node);process.exit(1)}\"",
+        "nohup npx -y cozyclay > cozyclay.log 2>&1 &",
+        "echo \"已启动，地址：http://127.0.0.1:5180/app/\""
+      ],
+      "stepsPs": [
+        "node -e \"const [a,b]=process.versions.node.split('.').map(Number); if(a<22||(a===22&&b<19)){console.error('需要 Node.js 22.19 或更高，当前 '+process.versions.node);process.exit(1)}\"",
+        "Start-Process -FilePath \"npx.cmd\" -ArgumentList \"-y\",\"cozyclay\" -WindowStyle Hidden -RedirectStandardOutput cozyclay.log -RedirectStandardError cozyclay.err.log",
+        "Write-Host '已启动，地址：http://127.0.0.1:5180/app/'"
+      ],
+      "source": "https://github.com/NomaDamas/CozyClay#quick-start"
+    },
+    "pitfalls": [
+      "Node 版本不够：升级到 22.19+ 再运行 npx -y cozyclay",
+      "首次启动很慢：npx 正在下载包，等日志出现本地地址",
+      "5180 打不开：确认终端里服务已启动，端口没被占用",
+      "浏览器不兼容：用 Chromium 内核浏览器，别用老旧内嵌浏览器",
+      "Agent 不回话：在面板里填自己的模型 Key，或改用 MCP 客户端",
+      "动作烘焙失败：先减少角色数量与场景复杂度，再重试",
+      "对外部署前先读 AGPL-3.0，避免直接当 SaaS 提供"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/cozyclay-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/cozyclay-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "CozyClay 安装",
+    "CozyClay 教程",
+    "3D previs 开源",
+    "AI 视频 预演",
+    "浏览器 3D 工具",
+    "CozyClay MCP",
+    "分镜 预演 工具",
+    "CozyClay 中文",
+    "AI 视频 分镜",
+    "cozyclay deploy guide"
+  ],
+  "topics": [
+    "3d",
+    "previs",
+    "ai-video",
+    "mcp",
+    "nodejs"
+  ]
+}

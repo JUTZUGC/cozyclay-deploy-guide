@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "cozyclay-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}
